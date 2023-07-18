@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon'
+import Base from '~rndao/layouts/base.astro'
+import PageHero from '~rndao/components/pagehero.astro'
+import { SiteMetadata } from '~rndao/config'
+
+const frontmatter = {
+  title: 'Contact',
+  description:
+    '',
+  coverSVG: '../svg/headers/page-header.svg',
+  socialImage: '../images/social.png',
+  publishDate: SiteMetadata.buildTime,
+}
+---
+
+<Base frontmatter={frontmatter}>
+  <main class="short-content">
+    <article class="post">
+    <header>
+      <PageHero
+        title={frontmatter.title}
+        description={frontmatter.description}
+        coverSVG={frontmatter.coverSVG}
+        socialImage={frontmatter.socialImage}
+      />
+    </header>
+    <section class="mb-0 text-zinc-900 dark:text-zinc-100 mx-auto xl:max-w-6xl 2xl:max-w-7xl">
+      <div class="block bg-zinc-50 dark:bg-zinc-700 my-5 lg:my-8 rounded-t-xl overflow-hidden">
+        <div class="flex flex-wrap items-center py-10">
+
+          <div class="h-auto">
+            <div class="flex flex-wrap px-5 pt-8 lg:pt-0 gap-5 ">
+              {
+                SiteMetadata.social.map(
+                  method =>
+                    method.link && (
+                      <div class="mb-12 grow-0 shrink-0 basis-auto w-5/12 md:w-6/12 lg:w-4/12 md:pr-6 xl:px-12">
+                        <a
+                          href={method.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="group flex grow font-bold text-zinc-600 hover:bg-zinc-600 hover:text-accent1 dark:text-zinc-300 dark:hover:text-accent2 dark:hover:bg-zinc-800 pl-0 rounded-md h-full -translate-x-1 transition-all duration-300 ease-in-out"
+                        >
+                        <div class="flex items-center rounded-md">
+                          <div class="shrink-0 z-10">
+                            <Icon
+                              pack="bi"
+                              name={method.icon}
+                              class="p-2 bg-zinc-600 text-white rounded-md shadow-md w-16 h-16 flex items-center justify-center group-hover:text-accent1 dark:group-hover:text-accent2 dark:bg-zinc-800 dark:text-white transition-all duration-300 ease-in-out"
+                            />
+                          </div>
+                          <div class="grow items-stretch justify-center pl-4 ">
+
+                                {method.name}
+
+                          </div>
+                        </div>
+                      </a>
+                      </div>
+                    )
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+  </main>
+</Base>
